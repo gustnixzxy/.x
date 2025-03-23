@@ -1,3 +1,11 @@
+--[[
+    		NEVERZEN INTERFACE
+
+    Author: 4lpaca
+    License: MIT
+    GitHub: https://github.com/3345-c-a-t-s-u-s/NeverZen
+--]]
+
 cloneref = cloneref or function(...) return ... end;
 cloenfunction = cloenfunction or function(...) return ... end;
 hookfunction = hookfunction or function(a,b) return a end;
@@ -1132,32 +1140,25 @@ function NeverZen:SetTheme(name)
 end;
 
 function NeverZen.new(config)
-	config = config or {}
+	config = config or {};
 
-	config.Name = config.Name or "NEVERZEN"
-	config.Keybind = config.Keybind or Enum.KeyCode.LeftControl
-	config.Scale = config.Scale or UDim2.new(0, 611, 0, 396)
-	config.Resizable = config.Resizable
-	config.Shadow = config.Shadow or false
+	config.Name = config.Name or "NEVERZEN";
+	config.Keybind = config.Keybind or Enum.KeyCode.LeftControl;
+	config.Scale = config.Scale or UDim2.new(0, 611, 0, 396);
+	config.Resizable = config.Resizable;
+	config.Shadow = config.Shadow or false;
 
-	-- Verifica se já existe um ScreenGui com o nome "NeverZen_UI" e o remove
-	for _, gui in ipairs(Services.CoreGui:GetChildren()) do
-		if gui:IsA("ScreenGui") and gui.Name == "NeverZen_UI" then
-			gui:Destroy()
-		end
-	end
+	local WindowSignal = {};
 
-	local WindowSignal = {}
-
-	WindowSignal.SelectedTab = nil
-	WindowSignal.Tabs = {}
-	WindowSignal.Config = config
-	WindowSignal.Toggle = true
+	WindowSignal.SelectedTab = nil;
+	WindowSignal.Tabs = {};
+	WindowSignal.Config = config;
+	WindowSignal.Toggle = true;
 	WindowSignal.FrameMemory = {
 		WindowBackgroundColor = {},
 		HeadText = {},
 		LineColor = {},
-	}
+	};
 
 	local Content = Instance.new("ScreenGui")
 	local WindowFrame = Instance.new("Frame")
@@ -1189,14 +1190,13 @@ function NeverZen.new(config)
 	local Line_3 = Instance.new("Frame")
 	local TabWin = Instance.new("Frame")
 
-	Content.Name = "NeverZen_UI" -- Define um nome fixo para facilitar a verificação e remoção
-	Content.Parent = Services.CoreGui
+	Content.Name = NeverZen:RandomString()
+	Content.Parent = Services.CoreGui;
 	Content.ResetOnSpawn = false
 	Content.IgnoreGuiInset = true
-	Content.ZIndexBehavior = Enum.ZIndexBehavior.Global
+	Content.ZIndexBehavior = Enum.ZIndexBehavior.Global;
 
-	NeverZen.ProtectGui(Content)
-end
+	NeverZen.ProtectGui(Content);
 
 	WindowFrame.Name = NeverZen:RandomString()
 	WindowFrame.Parent = Content
@@ -1208,6 +1208,14 @@ end
 	WindowFrame.Position = UDim2.new(0, 177, 0, 177)
 	WindowFrame.Size = UDim2.new(0,0,0,0)
 	WindowFrame.Active = true
+
+	if game.Players.LocalPlayer:FindFirstChild("PlayerGui") then
+    local oldGui = game.Players.LocalPlayer.PlayerGui:FindFirstChild("NeverZen")
+    if oldGui then
+        oldGui:Destroy()
+    end
+end
+
 
 	table.insert(WindowSignal.FrameMemory.WindowBackgroundColor , WindowFrame)
 
