@@ -632,7 +632,7 @@ function x:Start(GuiConfig)
     MinimizeButton.Size = UDim2.fromOffset(35, 35)
     MinimizeButton.Position = UDim2.fromScale(0.10, 0.30)
     MinimizeButton.BackgroundTransparency = 1
-    MinimizeButton.Image = "rbxassetid://136185511841795"
+    MinimizeButton.Image = "rbxassetid://88567446836383"
     MinimizeButton.BackgroundColor3 = GuiConfig["Color"]
     MinimizeButton.AutoButtonColor = false
     MinimizeButton.Draggable = true
@@ -2365,3 +2365,5 @@ function x:Start(GuiConfig)
     return Tabs
 end
 return x
+
+-- ggs
