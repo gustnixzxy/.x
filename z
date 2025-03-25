@@ -229,8 +229,8 @@ local function EnterMouse(frameenter)
     end
 end
 
-local X = {}
-function X:Notify(NotifyConfig)
+local x = {}
+function x:Notify(NotifyConfig)
     local NotifyConfig = NotifyConfig or {}
     NotifyConfig.Title = NotifyConfig.Title or "Speed Hub"
     NotifyConfig.Description = NotifyConfig.Description or ""
@@ -316,7 +316,7 @@ function X:Notify(NotifyConfig)
         DropShadowHolder.Name = "DropShadowHolder"
         DropShadowHolder.Parent = NotifyFrameReal
 
-        DropShadow.Image = "rbxassetid://6015897843"
+        DropShadow.Image = "rbxassetid://0"
         DropShadow.ImageColor3 = Color3.fromRGB(0, 0, 0)
         DropShadow.ImageTransparency = 0.5
         DropShadow.ScaleType = Enum.ScaleType.Slice
@@ -449,18 +449,21 @@ function HideUsername(text)
     return string.sub(text, 1, 3) .. string.rep("*", #text - 3)
 end
 
-function X:Start(GuiConfig)
+function x:Start(GuiConfig)
     local GuiConfig = GuiConfig or {}
     GuiConfig.Name = GuiConfig.Name or "Eclipse.lol | TPS: Street Soccer"
-    GuiConfig.Description = GuiConfig.Description or "[BETA]"
+    GuiConfig.Description = GuiConfig.Description or ""
     GuiConfig["Info Color"] = GuiConfig["Info Color"] or Color3.fromRGB(0, 86, 255)
+    GuiConfig["Logo Info"] = GuiConfig["Logo Info"] or "https://www.roblox.com/headshot-thumbnail/image?userId=".. game:GetService("Players").LocalPlayer.UserId .."&width=420&height=420&format=png"
+	GuiConfig["Logo Player"] = GuiConfig["Logo Player"] or "https://www.roblox.com/headshot-thumbnail/image?userId=".. game:GetService("Players").LocalPlayer.UserId .."&width=420&height=420&format=png"
 	GuiConfig["Name Info"] = GuiConfig["Name Info"] or HideUsername(tostring(game:GetService("Players").LocalPlayer.Name))
+    GuiConfig["Name Player"] = GuiConfig["Name Player"] or HideUsername(tostring(game:GetService("Players").LocalPlayer.Name))
     GuiConfig["Info Description"] = GuiConfig["Info Description"] or ""
 	GuiConfig["Tab Width"] = GuiConfig["Tab Width"] or 135
-	GuiConfig["Color"] = GuiConfig["Color"] or Color3.fromRGB(232, 156, 24)
+	GuiConfig["Color"] = GuiConfig["Color"] or Color3.fromRGB(0, 86, 255)
 	GuiConfig["CloseCallBack"] = GuiConfig["CloseCallBack"] or function() end
     GuiConfig["SaveFolder"] = GuiConfig["SaveFolder"] or false
-    local Flags = X and X.Flags or {}
+    local Flags = x and x.Flags or {}
 
     if GuiConfig["SaveFolder"] and type(GuiConfig["SaveFolder"]) == "string" then GuiConfig["SaveFolder"] = string.gsub(GuiConfig["SaveFolder"], "/", "|")end
 
@@ -612,17 +615,17 @@ function X:Start(GuiConfig)
 
     MakeDraggable(Top, Main)
 
-    function X:ToggleUI()
+    function x:ToggleUI()
         Main.Visible = not Main.Visible
     end
 
-    function X:CloseUI()
+    function x:CloseUI()
         SpeedGui:Destroy()
         MinimizeButton:Destroy()
     end
 
     CloseButton.Activated:Connect(function()
-        X:CloseUI()
+        x:CloseUI()
         GuiConfig.CloseCallBack()
     end)
     
@@ -640,7 +643,7 @@ function X:Start(GuiConfig)
     UICornerMinimize.CornerRadius = UDim.new(0, 5)
     UICornerMinimize.Parent = MinimizeButton  
     
-    MinimizeButton.MouseButton1Click:Connect(X.ToggleUI)
+    MinimizeButton.MouseButton1Click:Connect(x.ToggleUI)
 
     --// Tab
     local LayersTab = Instance.new("Frame");
@@ -2361,4 +2364,4 @@ function X:Start(GuiConfig)
     end
     return Tabs
 end
-return X
+return x
